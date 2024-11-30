@@ -1,0 +1,70 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(8, 2, 78);
+  width: 500px;
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.password-container_holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+}
+.password-container_holder h1 {
+  color: white;
+  font-size: 18px;
+}
+
+.password-container_input {
+  display: flex;
+  color: orange;
+}
+
+.password-container_input input {
+  width: 400px;
+  font-size: 20px;
+  padding: 5px;
+  padding-left: 20px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.password-container_input button {
+  background-color: rgb(8, 40, 222);
+  padding: 10px;
+  color: white;
+  border-radius: 0px 10px 10px 0px;
+  cursor: pointer;
+  transition: background-color 0.35s;
+}
+
+.password-container_input button:hover {
+  background-color: rgba(8, 40, 222, 0.44);
+}
+.controllers {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.controllers div {
+  display: flex;
+  gap: 10px;
+}
+
+.controllers div label {
+  color: orange;
+}
