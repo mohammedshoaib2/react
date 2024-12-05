@@ -15,7 +15,7 @@ function TodoForm() {
           setTodoInput("");
         }
       }}
-      className="w-2/4  flex"
+      className="xl:w-2/4 lg:w-3/4 md:w-11/12 sm:w-screen w-screen px-8  flex"
     >
       <input
         id={uniqueId4}
