@@ -9,7 +9,6 @@ class AuthService {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId);
-
     this.account = new Account(this.client);
   }
 
@@ -23,21 +22,25 @@ class AuthService {
       );
 
       if (userAccount) {
-        // call another function
-        this.login({ email, password });
+        await this.login({ email, password });
+        return userAccount;
       } else {
         return userAccount;
       }
     } catch (error) {
+      console.log(
+        "AppwriteError :: AuthService :: createAccount :: Error : ",
+        error
+      );
       throw error;
     }
   }
 
   async login({ email, password }) {
     try {
-      return await this.account.createEmailPasswordSession(email, password);
+      await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.log("AppwriteService :: AuthService :: login :: Error :", error);
+      console.log("AppwriteError :: AuthService :: login :: Error : ", error);
     }
   }
 
@@ -46,25 +49,30 @@ class AuthService {
       return await this.account.get();
     } catch (error) {
       console.log(
-        "AppwriteService :: AuthService :: getCurrentUser :: Error : ",
+        "AppwriteError :: AuthService :: getCurrentUser :: Error : ",
         error
       );
-      return false;
     }
   }
 
   async logOut() {
     try {
-      return await this.account.deleteSessions();
+      await this.account.deleteSessions();
+      return true;
     } catch (error) {
-      console.log(
-        "AppwriteService :: AuthService :: logOut :: Error : ",
-        error
-      );
+      console.log("AppwriteError :: AuthService :: logOut :: Error : ", error);
+      return false;
     }
   }
 }
 
 const authService = new AuthService();
-
 export default authService;
+//AuthService
+// createAccount()
+
+//login()
+
+//getCurrentUser()
+
+//logOut()

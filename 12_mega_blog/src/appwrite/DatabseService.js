@@ -1,22 +1,20 @@
 import { Client, Databases, Query } from "appwrite";
-import conf from "../src/conf/conf";
+import conf from "../conf/conf";
 
 class DatabaseService {
   client = new Client();
-  databases;
+  database;
 
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId);
-    this.databases = new Databases(this.client);
+    this.database = new Databases(this.client);
   }
-
-  //createPost
 
   async createPost(slug, { title, content, userId, featuredImage, status }) {
     try {
-      return await this.databases.createDocument(
+      return await this.database.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug,
@@ -30,38 +28,40 @@ class DatabaseService {
       );
     } catch (error) {
       console.log(
-        "AppwriteService :: DatabaseService :: createPost :: Error : ",
+        "AppwriteError :: DatabaseService :: createPost :: Error : ",
         error
       );
-
       return false;
     }
   }
-
-  //updatePost
 
   async updatePost(slug, { title, content, userId, featuredImage, status }) {
     try {
-      return await this.databases.updateDocument(
+      return await this.database.updateDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug,
-        { title, content, userId, featuredImage, status }
+        {
+          title,
+          content,
+          userId,
+          featuredImage,
+          status,
+        }
       );
     } catch (error) {
       console.log(
-        "AppwriteService :: DatabaseService :: updatePost :: Error : ",
+        "AppwriteError :: DatabaseService :: updatePost :: Error : ",
         error
       );
+
       return false;
     }
   }
 
-  //deletePost
-
-  async deletePost(slug) {
+  async deletePost({ slug }) {
     try {
-      await this.databases.deleteDocument(
+      await this.database.deleteDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
@@ -69,43 +69,41 @@ class DatabaseService {
       return true;
     } catch (error) {
       console.log(
-        "AppwriteService :: DatabaseService :: deletePost :: Error : ",
+        "AppwriteError :: DatabaseService :: deletePost :: Error : ",
         error
       );
+
       return false;
     }
   }
 
-  //getPost
-
-  async getPost(slug) {
+  async getPost({ slug }) {
     try {
-      return await this.databases.getDocument(
+      return await this.database.getDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
       );
     } catch (error) {
       console.log(
-        "AppwriteService :: DatabaseService :: getPost :: Error : ",
+        "AppwriteError :: DatabaseService :: getPost :: Error : ",
         error
       );
+
       return false;
     }
   }
 
-  //getPosts
-
   async getPosts(queries = [Query.equal("status", "active")]) {
     try {
-      return await this.databases.listDocuments(
+      return await this.database.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         queries
       );
     } catch (error) {
       console.log(
-        "AppwriteService :: DatabaseService :: getPost :: Error : ",
+        "AppwriteError :: DatabaseService :: getPost :: Error : ",
         error
       );
       return false;
@@ -114,4 +112,16 @@ class DatabaseService {
 }
 
 const databaseService = new DatabaseService();
+
 export default databaseService;
+//DatabaseService
+
+//createPost()
+
+//updatePost()
+
+//deletePost()
+
+//getPost()
+
+//getPosts()
