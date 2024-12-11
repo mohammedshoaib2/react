@@ -38,9 +38,10 @@ class AuthService {
 
   async login({ email, password }) {
     try {
-      await this.account.createEmailPasswordSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
       console.log("AppwriteError :: AuthService :: login :: Error : ", error);
+      throw error;
     }
   }
 
@@ -52,6 +53,7 @@ class AuthService {
         "AppwriteError :: AuthService :: getCurrentUser :: Error : ",
         error
       );
+      return false;
     }
   }
 

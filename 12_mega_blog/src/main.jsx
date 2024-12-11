@@ -11,7 +11,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Layout, HomeScreen, SignupForm, Button } from "./components/index";
+import {
+  Layout,
+  HomeScreen,
+  SignupScreen,
+  LoginScreen,
+} from "./components/index";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -27,8 +32,31 @@ const router = createBrowserRouter(
       <Route
         path="/signup"
         element={
-          <Layout>
-            <SignupForm />
+          <Layout authentication={false}>
+            <SignupScreen />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/login"
+        element={
+          <Layout authentication={false}>
+            <LoginScreen />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="*"
+        element={
+          <Layout authentication={false}>
+            <div
+              style={{ height: "80vh" }}
+              className="flex justify-center items-center text-5xl"
+            >
+              404 Page Not found
+            </div>
           </Layout>
         }
       />
