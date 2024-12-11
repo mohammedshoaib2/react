@@ -10,6 +10,9 @@ import SignupScreen from "./Pages/SignupScreen";
 import LoginScreen from "./Pages/LoginScreen";
 import LoginForm from "./LoginForm";
 import LogoutButton from "./LogoutButton";
+import AddPostScreen from "./Pages/AddPostScreen";
+import PostForm from "./PostForm";
+import SelectOptions from "./SelectOptions";
 
 export {
   Layout,
@@ -24,4 +27,7 @@ export {
   LoginScreen,
   LoginForm,
   LogoutButton,
+  AddPostScreen,
+  PostForm,
+  SelectOptions,
 };

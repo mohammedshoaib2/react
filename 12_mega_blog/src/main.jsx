@@ -16,6 +16,7 @@ import {
   HomeScreen,
   SignupScreen,
   LoginScreen,
+  AddPostScreen,
 } from "./components/index";
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,9 +49,18 @@ const router = createBrowserRouter(
       />
 
       <Route
+        path="/add-post"
+        element={
+          <Layout authentication={true}>
+            <AddPostScreen />
+          </Layout>
+        }
+      />
+
+      <Route
         path="*"
         element={
-          <Layout authentication={false}>
+          <Layout>
             <div
               style={{ height: "80vh" }}
               className="flex justify-center items-center text-5xl"

@@ -8,6 +8,7 @@ function InputComponent(
     <div className="">
       <input
         ref={ref}
+        autoComplete="on"
         type={type}
         className={`inline-block bg-white py-3 px-6 rounded-lg
              text-gray-900 outline-none w-full border-gray-300 border-2

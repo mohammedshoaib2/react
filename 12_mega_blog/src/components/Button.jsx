@@ -8,7 +8,6 @@ function Button({
   loader = false,
   ...props
 }) {
-  console.log("button rendered");
   return (
     <button
       type={type}
